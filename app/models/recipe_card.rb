@@ -1,0 +1,2 @@
+class RecipeCard < ApplicationRecord
+end
