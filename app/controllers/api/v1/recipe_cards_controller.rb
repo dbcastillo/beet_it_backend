@@ -6,6 +6,13 @@ class Api::V1::RecipeCardsController < ApplicationController
     render json: @recipe_cards
   end
 
+  def show
+    render json: @recipe_card, status: 200
+  end
+
+  def create
+  end
+
   def update
     @recipe_card.update
     if @recipe_card.save
@@ -15,9 +22,9 @@ class Api::V1::RecipeCardsController < ApplicationController
     end
   end
 
-  def show
-    render json: @recipe_card, status: 200
+  def delete
   end
+
 
   private
 
