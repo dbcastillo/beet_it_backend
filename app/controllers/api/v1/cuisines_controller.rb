@@ -1,8 +1,23 @@
 class Api::V1::CuisinesController < ApplicationController
-  before_action :find_cuisine, only: [:update]
+  before_action :find_cuisine, only: [:show, :update, :delete]
   def index
     @cuisines = Cuisine.all
     render json: @cuisines
+  end
+
+  def show
+    render json: @cuisine, status: 200
+  end
+
+  def create
+    @cuisine = Cuisine.new(cuisine_params)
+    if @cuisine.save
+      render json: @cuisine, status: :accepted
+      # If we are created the cuisine
+      # then we w
+    else
+      render json: { errors: @cuisine.errors.full_messages }, status: :unprocessible_entity
+    end
   end
 
   def update
@@ -12,6 +27,9 @@ class Api::V1::CuisinesController < ApplicationController
     else
       render json: { errors: @cuisine.errors.full_messages }, status: :unprocessible_entity
     end
+  end
+
+  def delete
   end
 
   private
@@ -24,3 +42,8 @@ class Api::V1::CuisinesController < ApplicationController
     @cuisine = Cuisine.find(params[:id])
   end
 end
+
+
+# def create
+#
+# end

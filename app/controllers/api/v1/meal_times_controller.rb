@@ -1,27 +1,20 @@
 class Api::V1::MealTimesController < ApplicationController
-  before_action :find_meal_time, only: [:update]
+  before_action :find_meal_time, only: [:show]
 
   def index
-    @meal_times = Mealtime.all
-    render json: @meal_times
+    @mealtimes = Mealtime.all
+    render json: @mealtimes
   end
 
-  def update
-    @meal_time.update
-    if @meal_time.save
-      render json: @meal_time, status: :accepted
-    else
-      render json: { errors: @meal_time.errors.full_messages }, status: :unprocessible_entity 
-    end
+  def show
+    render json: @mealtime, status: 200
   end
+
 
   private
-  def meal_time_params
-    params.permit(:name)
-  end
 
   def find_meal_time
-    @meal_time = Mealtime.find(params[:id])
+    @mealtime = Mealtime.find(params[:id])
   end
 
 end
