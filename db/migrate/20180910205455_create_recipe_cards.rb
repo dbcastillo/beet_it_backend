@@ -6,7 +6,7 @@ class CreateRecipeCards < ActiveRecord::Migration[5.2]
       t.string :instructions
       t.string :ingredients
       t.integer :cuisine_id
-      t.integer :meal_time_id
+      t.integer :mealtime_id
 
       t.timestamps
     end

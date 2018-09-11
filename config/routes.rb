@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :cuisines, only: [:index, :update]
-      resources :meal_times, only: [:index, :update]
+      resources :mealtimes, only: [:index, :update]
+      resources :recipe_cards, only: [:index, :show, :update]
     end
   end
 end
