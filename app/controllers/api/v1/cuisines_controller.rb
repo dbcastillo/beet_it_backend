@@ -37,19 +37,16 @@ class Api::V1::CuisinesController < ApplicationController
     params.permit(*args)
   end
 
-<<<<<<< HEAD
-  def find_cuisine
-
-    # @cuisine = Cuisine.find(params[:id])
-
-    @cuisine = Cuisine.find(params[:cuisine][:id])
-
-  end
-=======
+  # def find_cuisine
+  #
+  #   # @cuisine = Cuisine.find(params[:id])
+  #
+  #   @cuisine = Cuisine.find(params[:cuisine][:id])
+  #
+  # end
   # def find_cuisine
   #   @cuisine = Cuisine.find(params[:cuisine][:id])
   # end
->>>>>>> 71d7ccbdaf16ea78741d4203333d436b283ddd0e
 end
 
 #
