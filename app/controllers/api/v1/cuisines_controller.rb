@@ -1,20 +1,21 @@
 class Api::V1::CuisinesController < ApplicationController
-  before_action :find_cuisine, only: [:show, :update, :delete]
+  before_action :find_cuisine, only: [:update, :delete]
+
   def index
     @cuisines = Cuisine.all
     render json: @cuisines
   end
-
-  def show
-    render json: @cuisine, status: 200
-  end
+  #
+  # def show
+  #   render json: @cuisine, status: 200
+  # end
 
   def create
     @cuisine = Cuisine.new(cuisine_params)
     if @cuisine.save
       render json: @cuisine, status: :accepted
-
-      @recipeCard = RecipeCard.new(cuisine_params(:image, :title, :instructions, :ingredients, :cuisine_id, :mealtime_id))
+      # @cuisine.id how to put in the new for recipecard for cuisine_id
+      @recipeCard = RecipeCard.new(cuisine_params(:image, :title, :instructions, :ingredients, :mealtime_id, :cuisine_id = @cuisine.id))
       if @recipeCard.save
         render json: @recipeCard, status: :accepted
       else
@@ -24,17 +25,10 @@ class Api::V1::CuisinesController < ApplicationController
     end
   end
 
-  def update
-    @cuisine.update(cuisine_params)
-    if @cuisine.save
-      render json: @cuisine, status: :accepted
-    else
-      render json: { errors: @cuisine.errors.full_messages }, status: :unprocessible_entity
-    end
-  end
 
-  def delete
-  end
+
+  # def destroy
+  # end
 
   private
 
@@ -47,13 +41,13 @@ class Api::V1::CuisinesController < ApplicationController
   end
 end
 
-
-t.string "image"
-t.string "title"
-t.string "instructions"
-t.string "ingredients"
-t.integer "cuisine_id"
-t.integer "mealtime_id"
+#
+# t.string "image"
+# t.string "title"
+# t.string "instructions"
+# t.string "ingredients"
+# t.integer "cuisine_id"
+# t.integer "mealtime_id"
 
 # #fetch('url', {
 #   method: 'post',
