@@ -11,15 +11,17 @@ class Api::V1::CuisinesController < ApplicationController
   # end
 
   def create
+    
     @cuisine = Cuisine.new(cuisine_params)
     if @cuisine.save
       render json: @cuisine, status: :accepted
       # @cuisine.id how to put in the new for recipecard for cuisine_id
-      @recipeCard = RecipeCard.new(cuisine_params(:image, :title, :instructions, :ingredients, :mealtime_id, :cuisine_id = @cuisine.id))
+      # @recipeCard = RecipeCard.new(cuisine_params(:image, :title, :instructions, :ingredients, :mealtime_id, :cuisine_id = @cuisine.id))
       if @recipeCard.save
         render json: @recipeCard, status: :accepted
       else
         render json: { errors: @recipeCard.errors.full_messages }, status: :unprocessible_entity
+      end
     else
       render json: { errors: @cuisine.errors.full_messages }, status: :unprocessible_entity
     end
@@ -37,11 +39,11 @@ class Api::V1::CuisinesController < ApplicationController
   end
 
   def find_cuisine
-<<<<<<< HEAD
-    @cuisine = Cuisine.find(params[:id])
-=======
+
+    # @cuisine = Cuisine.find(params[:id])
+
     @cuisine = Cuisine.find(params[:cuisine][:id])
->>>>>>> 1a5233df1d9a8f02e382cc6134bf5740e594bebb
+
   end
 end
 
