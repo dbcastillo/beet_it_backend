@@ -1,5 +1,5 @@
 class Api::V1::RecipeCardsController < ApplicationController
-  before_action :find_recipe_card, only: [:show, :update]
+  before_action :find_recipe_card, only: [:show, :update, :destroy]
 
   def index
     @recipe_cards = RecipeCard.all
@@ -11,6 +11,12 @@ class Api::V1::RecipeCardsController < ApplicationController
   end
 
   def create
+    @recipe_card = RecipeCard.new(recipe_card_params)
+    if @recipe_card.save
+      render json: @recipe_card, status: :accepted
+    else
+      render json: { errors: @recipe_card.errors.full_messages }, status: :unprocessible_entity
+    end
   end
 
   def update
@@ -22,9 +28,15 @@ class Api::V1::RecipeCardsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+      #find the item to delete
+      #@list = List.find(params[:id])
+      #delete it
+      #@list.destroy
+      @recipe_card.destroy
+      #send back the data back
+      #redirect_to lists_path
   end
-
 
   private
 
