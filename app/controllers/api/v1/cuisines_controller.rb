@@ -11,14 +11,15 @@ class Api::V1::CuisinesController < ApplicationController
   # end
 
   def create
-    
-    @cuisine = Cuisine.new(cuisine_params)
+    # byebug
+    @cuisine = Cuisine.new(cuisine_params(:name))
     if @cuisine.save
-      render json: @cuisine, status: :accepted
+      #render json: @cuisine, status: :accepted
       # @cuisine.id how to put in the new for recipecard for cuisine_id
-      # @recipeCard = RecipeCard.new(cuisine_params(:image, :title, :instructions, :ingredients, :mealtime_id, :cuisine_id = @cuisine.id))
+      @recipeCard = RecipeCard.new(cuisine_params(:image, :title, :instructions, :ingredients, :mealtime_id).merge({:cuisine_id => @cuisine.id}))
+      # byebug
       if @recipeCard.save
-        render json: @recipeCard, status: :accepted
+        render json: {recipeCard: @recipeCard, cuisine: @cuisine}, status: 201
       else
         render json: { errors: @recipeCard.errors.full_messages }, status: :unprocessible_entity
       end
@@ -26,8 +27,6 @@ class Api::V1::CuisinesController < ApplicationController
       render json: { errors: @cuisine.errors.full_messages }, status: :unprocessible_entity
     end
   end
-
-
 
   # def destroy
   # end
@@ -38,6 +37,7 @@ class Api::V1::CuisinesController < ApplicationController
     params.permit(*args)
   end
 
+<<<<<<< HEAD
   def find_cuisine
 
     # @cuisine = Cuisine.find(params[:id])
@@ -45,6 +45,11 @@ class Api::V1::CuisinesController < ApplicationController
     @cuisine = Cuisine.find(params[:cuisine][:id])
 
   end
+=======
+  # def find_cuisine
+  #   @cuisine = Cuisine.find(params[:cuisine][:id])
+  # end
+>>>>>>> 71d7ccbdaf16ea78741d4203333d436b283ddd0e
 end
 
 #
