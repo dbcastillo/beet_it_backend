@@ -13,8 +13,12 @@ class Api::V1::CuisinesController < ApplicationController
     @cuisine = Cuisine.new(cuisine_params)
     if @cuisine.save
       render json: @cuisine, status: :accepted
-      # If we are created the cuisine
-      # then we w
+
+      @recipeCard = RecipeCard.new(cuisine_params(:image, :title, :instructions, :ingredients, :cuisine_id, :mealtime_id))
+      if @recipeCard.save
+        render json: @recipeCard, status: :accepted
+      else
+        render json: { errors: @recipeCard.errors.full_messages }, status: :unprocessible_entity
     else
       render json: { errors: @cuisine.errors.full_messages }, status: :unprocessible_entity
     end
@@ -34,14 +38,31 @@ class Api::V1::CuisinesController < ApplicationController
 
   private
 
-  def cuisine_params
-    params.permit(:name)
+  def cuisine_params(*args)
+    params.permit(*args)
   end
 
   def find_cuisine
-    @cuisine = Cusine.find(params[:id])
+    @cuisine = Cuisine.find(params[:cuisine][:id])
   end
 end
+
+
+t.string "image"
+t.string "title"
+t.string "instructions"
+t.string "ingredients"
+t.integer "cuisine_id"
+t.integer "mealtime_id"
+
+# #fetch('url', {
+#   method: 'post',
+#   headers: ...,
+#   body: stringify {
+#       id:
+#       spice:
+#   }
+# })
 
 
 # def create

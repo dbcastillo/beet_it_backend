@@ -11,6 +11,12 @@ class Api::V1::RecipeCardsController < ApplicationController
   end
 
   def create
+    @recipe_card = RecipeCard.new(recipe_card_params)
+    if @recipe_card.save
+      render json: @recipe_card, status: :accepted
+    else 
+      render json: { errors: @recipe_card.errors.full_messages }, status: :unprocessible_entity
+    end
   end
 
   def update
