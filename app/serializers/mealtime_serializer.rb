@@ -1,8 +1,8 @@
 class MealtimeSerializer < ActiveModel::Serializer
-  attributes :id, :name
-  has_many :cuisines
+  has_many :recipe_cards
+
 
   def cuisines
-    object.recipe_cards.map(&:cuisine).uniq
+    recipeCuisines = object.recipe_cards.map(&:cuisine).uniq
   end
 end
