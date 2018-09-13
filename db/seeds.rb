@@ -4,19 +4,11 @@ Mealtime.create(name: "Lunch")
 Mealtime.create(name: "Dinner")
 
 
-<<<<<<< HEAD
-Cuisine.create(name: "Korean")
-Cuisine.create(name: "Japanese")
-Cuisine.create(name: "Indian")
-Cuisine.create(name: "Chinese")
-Cuisine.create(name: "American")
-=======
 Cuisine.create(name: "Korean") #1
 Cuisine.create(name: "Japanese") #2
 Cuisine.create(name: "Indian") #3
 Cuisine.create(name: "American") #4
 Cuisine.create(name: "Chinese") #5
->>>>>>> 8fa718b5516ea42cdf3509d4f2c69fc81b566d9e
 
 
 # Breakfast/American/Baked Eggs & Avocados
