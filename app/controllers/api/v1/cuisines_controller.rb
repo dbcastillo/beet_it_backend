@@ -1,9 +1,14 @@
 class Api::V1::CuisinesController < ApplicationController
-  #before_action :find_cuisine, only: [:update, :delete]
+  before_action :find_cuisine, only: [:show, :update, :delete]
 
   def index
     @cuisines = Cuisine.all
     render json: @cuisines
+  end
+
+  def show
+    render json: @cuisine, status: 200
+
   end
 
   def create
@@ -11,7 +16,7 @@ class Api::V1::CuisinesController < ApplicationController
     if @cuisine.save
       @recipeCard = RecipeCard.new(cuisine_params(:image, :title, :instructions, :ingredients, :mealtime_id).merge({:cuisine_id => @cuisine.id}))
       if @recipeCard.save
-        render json: {recipeCard: @recipeCard, cuisine: @cuisine}, status: 201
+        render json: @recipeCard, status: 201
       else
         render json: { errors: @recipeCard.errors.full_messages }, status: :unprocessible_entity
       end
@@ -24,6 +29,10 @@ class Api::V1::CuisinesController < ApplicationController
 
   def cuisine_params(*args)
     params.permit(*args)
+  end
+
+  def find_cuisine
+    @cuisine = Cuisine.find(params[:id])
   end
 end
 

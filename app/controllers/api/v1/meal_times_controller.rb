@@ -7,7 +7,8 @@ class Api::V1::MealTimesController < ApplicationController
   end
 
   def show
-    render json: @mealtime, status: 200
+    #@cuisines = @mealtime.cuisines
+    render json:  @mealtime, include: '**' ,  status: 200
   end
 
 

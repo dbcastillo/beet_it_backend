@@ -7,7 +7,7 @@ class Api::V1::RecipeCardsController < ApplicationController
   end
 
   def show
-    render json: @recipe_card, status: 200
+    render json: @recipe_card, status: 200, scope: {'recipe': true}
   end
 
   def create
