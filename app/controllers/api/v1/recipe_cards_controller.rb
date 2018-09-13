@@ -7,7 +7,7 @@ class Api::V1::RecipeCardsController < ApplicationController
   end
 
   def show
-    render json: @recipe_card, status: 200
+    render json: @recipe_card, status: 200, scope: {'recipe': true}
   end
 
   def create
@@ -29,13 +29,12 @@ class Api::V1::RecipeCardsController < ApplicationController
   end
 
   def destroy
-      #find the item to delete
-      #@list = List.find(params[:id])
-      #delete it
-      #@list.destroy
-      @recipe_card.destroy
-      #send back the data back
-      #redirect_to lists_path
+    @recipe_card.destroy
+    if @recipe_card.destroyed?
+      render json: @recipe_card, status: 204
+    else
+      render json: { errors: @recipe_card.errors.full_messages }, status: :unprocessible_entity
+    end
   end
 
   private
