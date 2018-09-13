@@ -226,16 +226,20 @@ RecipeCard.create(
   title: "Beijing Beef",
   instructions:
     [
-      In a small bowl, combine cornstarch and broth until smooth.
-      Stir in the soy sauce, hoisin sauce and sesame oil; set aside.
+      "In a small bowl, combine cornstarch and broth until smooth.",
 
-      In a large nonstick skillet or wok, stir-fry beef in 1-1/2 teaspoons hot olive oil until no longer pink.
-      Remove and keep warm.
+      "Stir in the soy sauce, hoisin sauce and sesame oil; set aside.",
+      "In a large nonstick skillet or wok, stir-fry beef in 1-1/2 teaspoons hot olive oil until no longer pink.",
 
-      In the same skillet, stir-fry the onions in remaining olive oil for 2-3 minutes or until crisp-tender.
-      Stir cornstarch mixture and add to the pan. Bring to a boil; cook and stir for 2 minutes or until thickened.
+      "Remove and keep warm.",
 
-      Reduce heat; add beef and heat through. Serve over rice.
+
+      "In the same skillet, stir-fry the onions in remaining olive oil for 2-3 minutes or until crisp-tender.",
+
+      "Stir cornstarch mixture and add to the pan. Bring to a boil; cook and stir for 2 minutes or until thickened.",
+
+
+      "Reduce heat; add beef and heat through. Serve over rice."
 
     ],
   ingredients:
