@@ -1,8 +1,23 @@
 class MealtimeSerializer < ActiveModel::Serializer
-  has_many :recipe_cards
-
+  attributes :id, :name, :recipe_cards
+  # has_many :cuisines
 
   def cuisines
     recipeCuisines = object.recipe_cards.map(&:cuisine).uniq
   end
+
+  def recipe_cards
+    hash = {}
+
+    cuisines.each do |cuisine|
+      hash[cuisine.name] = []
+    end
+
+    object.recipe_cards.each do |card|
+      hash[card.cuisine.name] << card
+    end
+    hash
+  end
+
+
 end
