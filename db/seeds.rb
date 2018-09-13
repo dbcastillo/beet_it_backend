@@ -56,3 +56,21 @@ RecipeCard.create(
   cuisine_id: 5,
   mealtime_id: 3
 )
+
+RecipeCard.create(
+  image: "Cosi Image",
+  title: "Dee Rock",
+  instructions: ['1. plank', '2. plank again'],
+  ingredients: ['1. smile', '2. smile again'],
+  cuisine_id: 4,
+  mealtime_id: 2
+)
+
+RecipeCard.create(
+  image: "Snarky Image",
+  title: "Dee Rock",
+  instructions: ['1. plank', '2. plank again'],
+  ingredients: ['1. smile', '2. smile again'],
+  cuisine_id: 4,
+  mealtime_id: 3
+)
