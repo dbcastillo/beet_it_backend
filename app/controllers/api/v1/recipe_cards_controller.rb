@@ -12,6 +12,10 @@ class Api::V1::RecipeCardsController < ApplicationController
 
   def create
     @recipe_card = RecipeCard.new(recipe_card_params)
+
+    @recipe_card.ingredients = params[:ingredients].split(";")
+    @recipe_card.instructions = params[:instructions].split(";")
+
     if @recipe_card.save
       render json: @recipe_card, status: :accepted
     else
@@ -40,7 +44,7 @@ class Api::V1::RecipeCardsController < ApplicationController
   private
 
   def recipe_card_params
-    params.permit(:image, :title, :instructions, :ingredients, :cuisine_id, :mealtime_id)
+    params.permit(:image, :title, :cuisine_id, :mealtime_id)
   end
 
   def find_recipe_card
