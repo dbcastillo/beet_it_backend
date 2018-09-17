@@ -21,10 +21,3 @@ class RecipeCardSerializer < ActiveModel::Serializer
   end
 
 end
-
-# t.string :image
-# t.string :title
-# t.string :instructions
-# t.string :ingredients
-# t.integer :cuisine_id
-# t.integer :meal_time_id
